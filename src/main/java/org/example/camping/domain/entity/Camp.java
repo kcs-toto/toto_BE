@@ -42,7 +42,10 @@ public class Camp {
     @Comment("경도")
     Double longitude;
 
-    public Camp(String owner, String campingName, String info, String addr1, String addr2, String homepage, String amenities, Double latitude, Double longitude) {
+    @Comment("캠핑장 이미지")
+    String image;
+
+    public Camp(String owner, String campingName, String info, String addr1, String addr2, String homepage, String amenities, Double latitude, Double longitude,String image) {
         this.owner = owner;
         this.campingName = campingName;
         this.info = info;
@@ -52,5 +55,6 @@ public class Camp {
         this.amenities = amenities;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.image = image;
     }
 }

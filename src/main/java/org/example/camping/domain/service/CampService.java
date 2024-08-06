@@ -3,6 +3,7 @@ package org.example.camping.domain.service;
 import lombok.RequiredArgsConstructor;
 import org.example.camping.domain.entity.Camp;
 import org.example.camping.domain.repository.CampRepository;
+import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -20,6 +21,8 @@ import java.util.List;
 public class CampService {
 
     private final CampRepository campRepository;
+
+    private final OpenAiChatModel chatModel;
 
     public void createCampingInfo() throws ParserConfigurationException, IOException, SAXException {
         String url = "https://apis.data.go.kr/B551011/GoCamping/locationBasedList?serviceKey=d0quf9M3h%2BYX4z2RmQIYBYuNYLKclAhViz20uwl4K1NEJDovNE1kx9whMctnnY7Kj11YHAYRepRqEQ1WmP%2BGtg%3D%3D&numOfRows=61&pageNo=1&MobileOS=ETC&MobileApp=AppTest&mapX=126.533667&mapY=33.35225&radius=20000";
@@ -48,6 +51,9 @@ public class CampService {
             String amenities = getTagValue(item, "sbrsCl");
             String latitude = getTagValue(item, "mapY");
             String longitude = getTagValue(item, "mapX");
+            String image = getTagValue(item, "firstImageUrl");
+
+            String infoChange = "나는 지금 캠핑장 소개 웹페이지를 만들고 있어. 물론입니다! 이런 말은 사용하지 않고 사용자에게 정보를 제공해야하기 때문에, 존댓말로 공손하고 필요한 정보만 보이게 요약해서 문장을 패러프레이징 해줘" + info;
 
             // 추출한 데이터 출력 (또는 다른 처리)
             System.out.println("캠핑장 소유자: " + owner);
@@ -62,7 +68,7 @@ public class CampService {
             System.out.println("경도: " + longitude);
             System.out.println("--------------------");
 
-            Camp camping = new Camp(owner, campingName, info, addr1, addr2, homepage, amenities, Double.parseDouble(latitude), Double.parseDouble(longitude));
+            Camp camping = new Camp(owner, campingName, chatModel.call(infoChange), addr1, addr2, homepage, amenities, Double.parseDouble(latitude), Double.parseDouble(longitude), image);
 
 
 
