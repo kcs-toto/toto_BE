@@ -63,6 +63,8 @@ public class CampService {
 
             Camp camping = new Camp(owner, campingName, info, addr1, addr2, homepage, amenities, Double.parseDouble(latitude), Double.parseDouble(longitude));
 
+
+
             campRepository.save(camping);
         }
     }
