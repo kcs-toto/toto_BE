@@ -53,7 +53,7 @@ public class CampService {
             String longitude = getTagValue(item, "mapX");
             String image = getTagValue(item, "firstImageUrl");
 
-            String infoChange = "나는 지금 캠핑장 소개 웹페이지를 만들고 있어. 물론입니다! 이런 말은 사용하지 않고 사용자에게 정보를 제공해야하기 때문에, 존댓말로 공손하고 필요한 정보만 보이게 요약해서 문장을 패러프레이징 해줘" + info;
+            String infoChange = "나는 지금 캠핑장 소개 웹페이지를 만들고 있어. <다음> 문장을 사용자가 직관적으로 이해할 수 있도록 구현해줘 이때 응답에 복명복창은 빼주고 <다음> 이후에 내용이 없다면 없음이라고 응답해줘 \n <다음>" + info;
 
             // 추출한 데이터 출력 (또는 다른 처리)
             System.out.println("캠핑장 소유자: " + owner);
