@@ -20,7 +20,6 @@ public class Camp {
     @Comment("캠핑장 이름")
     String campingName;
 
-    @Column(columnDefinition = "TEXT")
     @Comment("캠핑장 설명")
     @Column(columnDefinition = "TEXT")
     String info;

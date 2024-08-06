@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class CampService {
 
     private final CampRepository campRepository;
 
-    public void getCampingInfo() throws ParserConfigurationException, IOException, SAXException {
+    public void createCampingInfo() throws ParserConfigurationException, IOException, SAXException {
         String url = "https://apis.data.go.kr/B551011/GoCamping/locationBasedList?serviceKey=d0quf9M3h%2BYX4z2RmQIYBYuNYLKclAhViz20uwl4K1NEJDovNE1kx9whMctnnY7Kj11YHAYRepRqEQ1WmP%2BGtg%3D%3D&numOfRows=61&pageNo=1&MobileOS=ETC&MobileApp=AppTest&mapX=126.533667&mapY=33.35225&radius=20000";
 
         // XML 데이터를 파싱하기 위한 DocumentBuilder 객체 생성
@@ -75,6 +76,10 @@ public class CampService {
             return nodeList.item(0).getTextContent();
         }
         return "N/A";
+    }
+
+    public List<Camp> getCampingInfo() {
+        return campRepository.findAll();
     }
 
 }

@@ -5,6 +5,7 @@ import org.example.camping.domain.service.CampService;
 import org.example.camping.global.common.ResponseUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,12 +22,17 @@ public class CampController {
     private final CampService campingService;
 
     @PostMapping("/info")
-    public ResponseEntity<?> getCampingInfo() {
+    public ResponseEntity<?> createCampingInfo() {
         try {
-            campingService.getCampingInfo();
+            campingService.createCampingInfo();
             return ResponseUtils.createResponse(HttpStatus.OK, "캠핑 정보 저장 성공");
         } catch (ParserConfigurationException | IOException | SAXException e) {
             return ResponseEntity.status(500).build();
         }
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<?> getCampingInfo() {
+        return ResponseUtils.createResponse(HttpStatus.OK, "캠핑 정보 조회 성공", campingService.getCampingInfo());
     }
 }
