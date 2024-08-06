@@ -1,9 +1,6 @@
 package org.example.camping.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
@@ -24,6 +21,7 @@ public class Camp {
     String campingName;
 
     @Comment("캠핑장 설명")
+    @Column(columnDefinition = "TEXT")
     String info;
 
     @Comment("주소1")
@@ -39,12 +37,12 @@ public class Camp {
     String amenities;
 
     @Comment("위도")
-    String latitude;
+    Double latitude;
 
     @Comment("경도")
-    String longitude;
+    Double longitude;
 
-    public Camp(String owner, String campingName, String info, String addr1, String addr2, String homepage, String amenities, String latitude, String longitude) {
+    public Camp(String owner, String campingName, String info, String addr1, String addr2, String homepage, String amenities, Double latitude, Double longitude) {
         this.owner = owner;
         this.campingName = campingName;
         this.info = info;

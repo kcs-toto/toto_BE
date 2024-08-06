@@ -61,7 +61,7 @@ public class CampService {
             System.out.println("경도: " + longitude);
             System.out.println("--------------------");
 
-            Camp camping = new Camp(owner, campingName, info, addr1, addr2, homepage, amenities, latitude, longitude);
+            Camp camping = new Camp(owner, campingName, info, addr1, addr2, homepage, amenities, Double.parseDouble(latitude), Double.parseDouble(longitude));
 
             campRepository.save(camping);
         }
