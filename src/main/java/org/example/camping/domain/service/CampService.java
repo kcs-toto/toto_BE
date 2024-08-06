@@ -70,8 +70,6 @@ public class CampService {
 
             Camp camping = new Camp(owner, campingName, chatModel.call(infoChange), addr1, addr2, homepage, amenities, Double.parseDouble(latitude), Double.parseDouble(longitude), image);
 
-
-
             campRepository.save(camping);
         }
     }
@@ -86,6 +84,10 @@ public class CampService {
 
     public List<Camp> getCampingInfo() {
         return campRepository.findAll();
+    }
+
+    public Camp getCampingInfoById(Long id) {
+        return campRepository.findById(id).orElse(null);
     }
 
 }
